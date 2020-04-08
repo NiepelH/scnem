@@ -1,0 +1,7 @@
+{
+  "name": "scnem",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
