@@ -1,0 +1,15 @@
+<ion-list>
+  <ion-list-header>
+    {{this.title}}
+  </ion-list-header>
+  <ion-menu-toggle auto-hide="false" *ngFor="let item of this.items">
+    <ion-item button [routerLink]="item.path">
+    <ion-icon slot="start" name='{{item.symbol}}'>
+    </ion-icon>
+      <ion-label>
+        {{item.name}}
+      </ion-label>
+    </ion-item>
+  </ion-menu-toggle>
+
+</ion-list>
