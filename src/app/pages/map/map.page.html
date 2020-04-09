@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>MAP</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-menu-toggle>
+        <ion-button>
+          <ion-icon slot="icon-only" name="menu"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div id="mapId" style="height:100%"></div>
+
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+
+    <ion-fab-button color="secondary" (click)="zoomIn()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-button color="secondary" (click)="zoomOut()">
+      <ion-icon name="remove-outline"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-button (click)="locatePosition()">
+      <ion-icon name="locate"></ion-icon>
+    </ion-fab-button>
+
+
+  </ion-fab>
+
+
+
+
+</ion-content>

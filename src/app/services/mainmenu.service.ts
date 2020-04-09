@@ -13,8 +13,8 @@ export class MainmenuService {
   public itemsChanged: Subject<any> = new Subject<any>();
   private stdTitle = 'Navigation';
   private stdItems = [
-    { name: 'Dashboard', path: '/home', symbol: 'home' },
-    { name: 'Foto', path: '/foto', symbol: 'camera-outline' },
+    { name: 'Dashboard', path: '/home', symbol: 'home-outline' },
+    { name: 'Map', path: '/map', symbol: 'map-outline' },
     { name: 'Photo', path: '/photo', symbol: 'camera-outline' }
   ];
   constructor(ls: LoggingService) {

@@ -1,3 +1,4 @@
+import { MainmenuService } from './services/mainmenu.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -11,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MainmenuComponent } from './components/mainmenu/mainmenu.component';
 
 
+
 @NgModule({
   declarations: [AppComponent, MainmenuComponent],
   entryComponents: [],
@@ -18,6 +20,7 @@ import { MainmenuComponent } from './components/mainmenu/mainmenu.component';
   providers: [
     StatusBar,
     SplashScreen,
+    MainmenuService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

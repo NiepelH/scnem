@@ -1,22 +1,22 @@
-import { PhotoService } from './../../services/photo.service';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { FotoPageRoutingModule } from './foto-routing.module';
+import { MapPageRoutingModule } from './map-routing.module';
 
-import { FotoPage } from './foto.page';
+import { MapPage } from './map.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FotoPageRoutingModule
+    MapPageRoutingModule
   ],
-  declarations: [FotoPage],
+  declarations: [MapPage],
   providers: []
 })
-export class FotoPageModule {}
+export class MapPageModule {}
