@@ -1,20 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { Map, tileLayer, marker } from 'leaflet';
+import { MapService } from './../../services/map.service';
+import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
+import { Map, tileLayer, marker, Marker, popup } from 'leaflet';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.page.html',
   styleUrls: ['./map.page.scss'],
 })
-export class MapPage implements OnInit {
+export class MapPage implements OnInit, AfterViewInit {
   public address: string[];
   map: Map;
   newMarker: any;
-  constructor() { }
+  constructor(
+    public ms: MapService,
+    private elementRef: ElementRef) {
+
+  }
 
   // Fired when the component routing to has finished animating.
   ionViewDidEnter() {
     this.loadMap();
+    this.loadSavedMarkers();
+  }
+
+  ionViewDidLeave() {
+    // this.loadSavedMarkers();
+    console.log('ionViewDidLeave fired');
+  }
+
+  ngAfterViewInit() {
+
   }
   ngOnInit() {
   }
@@ -34,6 +49,48 @@ export class MapPage implements OnInit {
       }).addTo(this.map);
   }
 
+  loadSavedMarkers() {
+    for (let m of this.ms.mapObjects) {
+      console.log('marker: ' + m.name);
+      this.newMarker = marker([m.lat, m.lng], {
+        draggable:
+          true
+      }).addTo(this.map);
+
+      let popupLink = '<ion-button class="object-link" object-id="'
+              + m.guid
+              + '"><ion-icon slot="start" name="arrow-redo-outline"></ion-icon>Select Object</ion-button>';
+
+      let newPopup = popup({
+        className: 'map-popup',
+        minWidth: 200,
+        closeButton: false
+      }).setContent('<p>' + m.name + ' [' + m.no + ']<br />' + m.description + '</p><p>' + popupLink + '</p>');
+
+      // this.newMarker.bindPopup('<p>' + m.name + ' [' + m.no + ']<br />' + m.description + '</p><p>' + popupLink + '</p>');
+      this.newMarker.bindPopup(newPopup);
+
+      let self = this;
+      this.newMarker.on('popupopen', () => {
+
+        // add event listener to newly added object-link element
+        self.elementRef.nativeElement.querySelector(".object-link")
+          .addEventListener('click', (e) => {
+            // get id from attribute
+            let objectId = e.target.getAttribute("object-id");
+            self.navigateToObject(objectId);
+          });
+      });
+
+
+    }
+  }
+
+  navigateToObject(objectId) {
+    // this.navCtrl.push(MerchantPage, { merchantId: merchantId });
+    console.log("going to object " + objectId);
+  }
+
   locatePosition() {
     this.map.locate({ setView: true }).on('locationfound', (e: any) => {
       this.newMarker = marker([e.latitude, e.longitude], {
@@ -42,7 +99,7 @@ export class MapPage implements OnInit {
       }).addTo(this.map);
       // this.newMarker.bindPopup('You are located here!').openPopup();
       const lPos = this.newMarker.getLatLng();
-      
+
       this.newMarker.bindPopup('Your position: ' + lPos.lat.toFixed(4) + ' / ' + lPos.lng.toFixed(4)).openPopup();
 
       this.newMarker.on('dragend', () => {

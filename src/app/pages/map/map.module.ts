@@ -1,3 +1,4 @@
+import { MapService } from './../../services/map.service';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,6 +18,6 @@ import { MapPage } from './map.page';
     MapPageRoutingModule
   ],
   declarations: [MapPage],
-  providers: []
+  providers: [MapService]
 })
 export class MapPageModule {}

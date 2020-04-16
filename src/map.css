@@ -1,0 +1,8 @@
+ /* css to customize Leaflet styles  */
+ .map-popup .leaflet-popup-tip,
+ .map-popup .leaflet-popup-content-wrapper {
+     background: rgb(253, 252, 192);
+     color: #000000;
+     text-align: center;
+ }
+ 

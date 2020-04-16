@@ -28,6 +28,7 @@
     "@ionic/pwa-elements": "^1.5.1",
     "@types/leaflet": "^1.5.12",
     "core-js": "^2.5.4",
+    "guid-typescript": "^1.0.9",
     "ionic-logging-service": "^9.1.0",
     "leaflet": "^1.6.0",
     "rxjs": "~6.5.1",
